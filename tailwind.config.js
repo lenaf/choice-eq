@@ -15,7 +15,7 @@ module.exports = {
   daisyui: {
     themes: ["light", "dark", "cupcake", "pastel", {
       custom: {
-        "primary": "#58755E",
+        "primary": "#58755D",
         "primary-content": "#2A1018",
         "secondary": "#ef9fbc",
         "secondary-content": "#2A1018",

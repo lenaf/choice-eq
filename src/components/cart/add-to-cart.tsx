@@ -48,7 +48,7 @@ export default function AddToCart({ product, inventoryCount }: Props) {
                 <button
                     data-action="decrement"
                     className={
-                        ' h-full w-20 cursor-pointer outline-none py-3'
+                        'h-full w-20 cursor-pointer outline-none py-3'
                     }
                     onClick={(e) => {
                         e.preventDefault();
@@ -79,7 +79,7 @@ export default function AddToCart({ product, inventoryCount }: Props) {
             </div>}
             {/* ADD TO CART */}
             <button aria-label="Add item to cart" title="Add Item to Cart" disabled={isPending}
-                className='w-full border mt-4 py-2 px-8 rounded-lg hover:bg-black hover:text-white'
+                className='btn btn-primary w-full border mt-4 py-2 px-8'
                 onClick={(e) => {
                     e.preventDefault();
                     addItem(cartProduct, { count: quantity })
