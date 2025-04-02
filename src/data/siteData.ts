@@ -12,7 +12,8 @@ const siteData = {
   homeHeroText: [
     `YADA YADA CLAY `
   ],
-  homeHeroCarouselImages: [hero1]
+  homeHeroCarouselImages: [hero1],
+  email: 'lforti41@gmail.com'
 }
 export default siteData;
 
