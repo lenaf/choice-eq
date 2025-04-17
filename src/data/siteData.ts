@@ -6,8 +6,12 @@ const siteData = {
   description: 'Mugs, Plates, Bowls, and Objects',
   language: 'en-us',
   locale: 'en-US',
-  routes: [
-    { href: '/', title: 'Choice Equine Home' },
+  navLinks: [
+    { href: '/about', title: 'About' },
+    { href: '/services', title: 'Services' },
+    { href: '/contant', title: 'Contact' },
+
+
   ],
   homeHeroText: [
     `YADA YADA CLAY `

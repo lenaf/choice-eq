@@ -10,7 +10,7 @@ const NavLinks = ({ linkClass, ...rest }: React.HTMLProps<HTMLElement> & { linkC
 
   return (
     <nav {...rest}>
-      {siteData.routes.map((link) => (
+      {siteData.navLinks.map((link) => (
         <Link
           key={link.title}
           href={link.href}
