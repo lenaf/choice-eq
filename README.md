@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Choice Equine
 
-## Getting Started
+Next.js 15 + Payload CMS 3 site with a Stripe-backed shop. Pages are built from CMS sections in `/admin`; products live in the Products collection and check out through Stripe Checkout.
 
-First, run the development server:
+## Local setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+docker compose up -d
+cp .env.example .env.local
+pnpm install
+pnpm seed
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Fill in `PAYLOAD_SECRET`, `SEED_ADMIN_EMAIL`, and `SEED_ADMIN_PASSWORD` in `.env.local` before running `pnpm seed`.
+- `pnpm seed` creates the admin user, a home page, an about page, and three sample products. It skips content when pages already exist.
+- Postgres runs in Docker on port 5433. Uploads go to `./media` unless `S3_BUCKET` is set.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stripe
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `STRIPE_SECRET_KEY`: use a test key locally.
+- `STRIPE_WEBHOOK_SECRET`: the webhook at `/api/stripe/webhook` lowers product inventory on `checkout.session.completed`. Locally: `stripe listen --forward-to localhost:3000/api/stripe/webhook`.
 
-## Learn More
+## Structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- `src/payload/collections`: Pages, Products, Media, Users
+- `src/payload/globals`: Navigation, Site Settings
+- `src/components/RenderSections.tsx`: renders page sections
+- `src/components/cart`: cart state (saved in localStorage), cart icon, add-to-cart button
+- `src/app/api/checkout`: builds the Stripe Checkout session from server-side product prices
+- `src/config/theme.ts`: brand colors; `pnpm generate-colors` writes `src/app/colors.css`
