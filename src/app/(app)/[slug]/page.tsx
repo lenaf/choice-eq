@@ -5,19 +5,24 @@ import type { Metadata } from 'next'
 import type { Page, Media } from '@/payload-types'
 
 export async function generateStaticParams() {
-  const payload = await getPayload()
-  const pages = await payload.find({
-    collection: 'pages',
-    where: {
-      slug: {
-        not_equals: 'home'
+  try {
+    const payload = await getPayload()
+    const pages = await payload.find({
+      collection: 'pages',
+      where: {
+        slug: {
+          not_equals: 'home'
+        }
       }
-    }
-  })
+    })
 
-  return pages.docs.map((page) => ({
-    slug: page.slug,
-  }))
+    return pages.docs.map((page) => ({
+      slug: page.slug,
+    }))
+  } catch {
+    // No database at build time; pages render on request.
+    return []
+  }
 }
 
 async function getPage(slug: string): Promise<Page | null> {
