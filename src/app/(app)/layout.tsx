@@ -5,6 +5,7 @@ import { CartProvider } from "@/components/cart/CartProvider";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
+import { getNavLinks, getSiteSettings } from "@/lib/siteData";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -23,14 +24,16 @@ export const metadata: Metadata = {
   title: "ChoiceEQ | From the Saddle to the Soul: Equine Training and Wellness Practices",
 };
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+export default async function AppLayout({ children }: { children: React.ReactNode }) {
+  const [settings, nav] = await Promise.all([getSiteSettings(), getNavLinks()]);
+
   return (
     <html lang="en">
       <body className={`${fraunces.variable} ${dmSans.variable}`}>
         <CartProvider>
-          <SiteHeader />
+          <SiteHeader cta={nav.cta} links={nav.links} />
           {children}
-          <SiteFooter />
+          <SiteFooter settings={settings} />
           <ScrollToTop />
         </CartProvider>
       </body>

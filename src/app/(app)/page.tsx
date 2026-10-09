@@ -1,23 +1,26 @@
-import { About } from "./_home/About";
-import { Approach } from "./_home/Approach";
-import { Community } from "./_home/Community";
-import { Contact } from "./_home/Contact";
-import { Hero } from "./_home/Hero";
-import { Partnership } from "./_home/Partnership";
-import { Services } from "./_home/Services";
-import { Testimonial } from "./_home/Testimonial";
+import type { Metadata } from "next";
+import { RenderBlocks } from "@/components/blocks/RenderBlocks";
+import { getPageBySlug, getSiteSettings } from "@/lib/siteData";
 
-export default function Home() {
+export const revalidate = 60;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPageBySlug("home");
+  const seo = page?.seo;
+  return {
+    ...(seo?.title ? { title: seo.title } : {}),
+    ...(seo?.description ? { description: seo.description } : {}),
+  };
+}
+
+export default async function Home() {
+  const [page, settings] = await Promise.all([getPageBySlug("home"), getSiteSettings()]);
+
+  if (!page) return <main className="min-h-screen pt-24" />;
+
   return (
-    <main>
-      <Hero />
-      <Approach />
-      <Services />
-      <Partnership />
-      <Testimonial />
-      <About />
-      <Community />
-      <Contact />
+    <main className="pt-24">
+      <RenderBlocks sections={page.sections || []} settings={settings} />
     </main>
   );
 }

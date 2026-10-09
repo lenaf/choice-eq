@@ -4,15 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
+import type { NavLink } from "@/lib/siteData";
 import { CartButton } from "./cart/CartButton";
 
-const NAV_LINKS = [
-  { href: "/#who-we-are", label: "Who we are" },
-  { href: "/#what-we-offer", label: "What we offer" },
-  { href: "/#our-impact", label: "Our impact" },
-];
-
-export function SiteHeader() {
+export function SiteHeader({ cta, links }: { cta: NavLink | null; links: NavLink[] }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -39,7 +34,7 @@ export function SiteHeader() {
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
@@ -49,9 +44,11 @@ export function SiteHeader() {
             </Link>
           ))}
           {siteConfig.shopEnabled && <CartButton />}
-          <Link href="/#reach-out" className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-content transition-colors hover:bg-neutral">
-            Reach out
-          </Link>
+          {cta && (
+            <Link href={cta.href} className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-content transition-colors hover:bg-neutral">
+              {cta.label}
+            </Link>
+          )}
         </nav>
 
         <button
@@ -70,18 +67,20 @@ export function SiteHeader() {
 
       {open && (
         <nav id="mobile-nav" aria-label="Main" className="border-t border-base-content/10 px-4 pb-6 md:hidden">
-          {NAV_LINKS.map((link) => (
+          {links.map((link) => (
             <Link key={link.href} href={link.href} onClick={() => setOpen(false)} className="block py-3 text-lg">
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/#reach-out"
-            onClick={() => setOpen(false)}
-            className="mt-3 block rounded-full bg-primary px-5 py-3 text-center font-semibold text-primary-content"
-          >
-            Reach out
-          </Link>
+          {cta && (
+            <Link
+              href={cta.href}
+              onClick={() => setOpen(false)}
+              className="mt-3 block rounded-full bg-primary px-5 py-3 text-center font-semibold text-primary-content"
+            >
+              {cta.label}
+            </Link>
+          )}
         </nav>
       )}
     </header>

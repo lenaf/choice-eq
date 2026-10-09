@@ -1,5 +1,6 @@
 import type { CollectionConfig, Field } from "payload";
 import { revalidate } from "../utils/revalidate";
+import { homeBlocks } from "../blocks/homeBlocks";
 
 const linkFields = (prefix: string, label: string): Field[] => [
   {
@@ -281,6 +282,7 @@ export const Pages: CollectionConfig = {
         initCollapsed: true,
       },
       blocks: [
+        ...homeBlocks,
         {
           slug: "bannerSection",
           dbName: "banner",

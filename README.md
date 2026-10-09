@@ -9,11 +9,13 @@ docker compose up -d
 cp .env.example .env.local
 pnpm install
 pnpm seed
+pnpm seed:home
 pnpm dev
 ```
 
 - Fill in `PAYLOAD_SECRET`, `SEED_ADMIN_EMAIL`, and `SEED_ADMIN_PASSWORD` in `.env.local` before running `pnpm seed`.
 - `pnpm seed` creates the admin user, a home page, an about page, and three sample products. It skips content when pages already exist.
+- `pnpm seed:home` loads the home page content, photos, menu, and contact details. It replaces only the home page.
 - Postgres runs in Docker on port 5433. Uploads go to `./media` unless `S3_BUCKET` is set.
 
 ## Stripe

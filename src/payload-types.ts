@@ -155,6 +155,176 @@ export interface Page {
   sections?:
     | (
         | {
+            image: number | Media;
+            eyebrow?: string | null;
+            heading: string;
+            subheading?: string | null;
+            buttons?:
+              | {
+                  label: string;
+                  href: string;
+                  style?: ('solid' | 'outline') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'photoHero';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            eyebrow?: string | null;
+            heading?: string | null;
+            intro?: string | null;
+            cards?:
+              | {
+                  image: number | Media;
+                  title: string;
+                  lead?: string | null;
+                  details?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'photoCards';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            eyebrow?: string | null;
+            heading?: string | null;
+            /**
+             * Photos alternate left and right
+             */
+            rows?:
+              | {
+                  image: number | Media;
+                  title: string;
+                  paragraphs?:
+                    | {
+                        text: string;
+                        id?: string | null;
+                      }[]
+                    | null;
+                  id?: string | null;
+                }[]
+              | null;
+            box?: {
+              title?: string | null;
+              text?: string | null;
+              items?:
+                | {
+                    text: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              buttonLabel?: string | null;
+              buttonHref?: string | null;
+            };
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'photoRows';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            image: number | Media;
+            brighten?: boolean | null;
+            eyebrow?: string | null;
+            heading?: string | null;
+            listHeading?: string | null;
+            items?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'photoBand';
+          }
+        | {
+            paragraphs?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            attribution?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'quote';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            image: number | Media;
+            name: string;
+            role?: string | null;
+            paragraphs?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            items?:
+              | {
+                  text: string;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'profile';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            heading?: string | null;
+            text?: string | null;
+            photos?:
+              | {
+                  image: number | Media;
+                  size?: ('normal' | 'wide' | 'tall' | 'large') | null;
+                  id?: string | null;
+                }[]
+              | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'photoGrid';
+          }
+        | {
+            /**
+             * Lets menu links jump here, e.g. who-we-are links from /#who-we-are
+             */
+            anchor?: string | null;
+            backgroundImage?: (number | null) | Media;
+            heading: string;
+            text?: string | null;
+            phoneLabel?: string | null;
+            socialText?: string | null;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'contactBand';
+          }
+        | {
             content?: {
               root: {
                 type: string;
@@ -687,6 +857,165 @@ export interface PagesSelect<T extends boolean = true> {
   sections?:
     | T
     | {
+        photoHero?:
+          | T
+          | {
+              image?: T;
+              eyebrow?: T;
+              heading?: T;
+              subheading?: T;
+              buttons?:
+                | T
+                | {
+                    label?: T;
+                    href?: T;
+                    style?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        photoCards?:
+          | T
+          | {
+              anchor?: T;
+              eyebrow?: T;
+              heading?: T;
+              intro?: T;
+              cards?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    lead?: T;
+                    details?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        photoRows?:
+          | T
+          | {
+              anchor?: T;
+              eyebrow?: T;
+              heading?: T;
+              rows?:
+                | T
+                | {
+                    image?: T;
+                    title?: T;
+                    paragraphs?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              box?:
+                | T
+                | {
+                    title?: T;
+                    text?: T;
+                    items?:
+                      | T
+                      | {
+                          text?: T;
+                          id?: T;
+                        };
+                    buttonLabel?: T;
+                    buttonHref?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        photoBand?:
+          | T
+          | {
+              anchor?: T;
+              image?: T;
+              brighten?: T;
+              eyebrow?: T;
+              heading?: T;
+              listHeading?: T;
+              items?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        quote?:
+          | T
+          | {
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              attribution?: T;
+              id?: T;
+              blockName?: T;
+            };
+        profile?:
+          | T
+          | {
+              anchor?: T;
+              image?: T;
+              name?: T;
+              role?: T;
+              paragraphs?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              items?:
+                | T
+                | {
+                    text?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        photoGrid?:
+          | T
+          | {
+              anchor?: T;
+              heading?: T;
+              text?: T;
+              photos?:
+                | T
+                | {
+                    image?: T;
+                    size?: T;
+                    id?: T;
+                  };
+              id?: T;
+              blockName?: T;
+            };
+        contactBand?:
+          | T
+          | {
+              anchor?: T;
+              backgroundImage?: T;
+              heading?: T;
+              text?: T;
+              phoneLabel?: T;
+              socialText?: T;
+              id?: T;
+              blockName?: T;
+            };
         bannerSection?:
           | T
           | {

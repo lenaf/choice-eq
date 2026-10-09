@@ -1,5 +1,6 @@
 import { getPayload } from '@/lib/payload'
-import { RenderSections } from '@/components/RenderSections'
+import { RenderBlocks } from '@/components/blocks/RenderBlocks'
+import { getSiteSettings } from '@/lib/siteData'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import type { Page, Media } from '@/payload-types'
@@ -70,10 +71,11 @@ export default async function PageComponent({ params }: { params: Promise<{ slug
   }
 
   const sections = page.sections || []
+  const settings = await getSiteSettings()
 
   return (
-    <main className="min-h-screen pt-16 lg:pt-16">
-      <RenderSections sections={sections} />
+    <main className="min-h-screen pt-24">
+      <RenderBlocks sections={sections} settings={settings} />
     </main>
   )
 }

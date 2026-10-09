@@ -11,7 +11,8 @@
     "generate-colors": "node scripts/generate-colors.mjs",
     "payload:generate": "payload generate:types",
     "payload:importmap": "payload generate:importmap",
-    "seed": "tsx --env-file=.env.local scripts/seed.ts"
+    "seed": "tsx --env-file=.env.local scripts/seed.ts",
+    "seed:home": "tsx --env-file=.env.local scripts/seed-home.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1000.0",
