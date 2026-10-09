@@ -6,19 +6,19 @@ export const themeConfig = {
     secondary: "#7E5A82",
     secondaryContent: "#FFFFFF",
 
-    accent: "#CCDCD2",
-    accentContent: "#1F2723",
+    accent: "#CBDDD1",
+    accentContent: "#352D37",
 
     accent2: "#628476",
     accent2Content: "#FFFFFF",
 
-    neutral: "#1F2723",
-    neutralContent: "#F4F1EC",
+    neutral: "#352D37",
+    neutralContent: "#F6F6E9",
 
-    base100: "#FCFBF9",
-    base200: "#F4F1EC",
+    base100: "#FBFBF5",
+    base200: "#F6F6E9",
     base300: "#6B736F",
-    baseContent: "#1F2723",
+    baseContent: "#352D37",
 
     info: "#60A5FA",
     infoContent: "#172554",
@@ -27,16 +27,16 @@ export const themeConfig = {
     successContent: "#FFFFFF",
 
     warning: "#E8C468",
-    warningContent: "#1F2723",
+    warningContent: "#352D37",
 
     error: "#B4432F",
     errorContent: "#FFFFFF",
   },
 
   logo: {
-    src: "/images/logos/choice-logo.png",
+    src: "/images/logos/choice-logo.svg",
     alt: "Choice Equine",
-    width: 409,
-    height: 275,
+    width: 2440,
+    height: 1639,
   },
 };

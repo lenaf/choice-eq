@@ -14,13 +14,8 @@ export function Community() {
     <section className="bg-base-200 px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Community</p>
-            <h2 className="mt-4 text-4xl leading-tight md:text-5xl">Ride. Learn. Connect.</h2>
-          </div>
-          <p className="max-w-md text-base-content/80">
-            Show days, trail walks, and quiet moments in the barn. Growing our community through horses.
-          </p>
+          <h2 className="text-4xl leading-tight md:text-5xl">Ride. Learn. Connect.</h2>
+          <p className="max-w-md text-base-content/80">Growing our community through horses.</p>
         </div>
         <div className="mt-12 grid auto-rows-[220px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
           {PHOTOS.map((photo) => (

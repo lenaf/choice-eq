@@ -4,39 +4,44 @@ import Link from "next/link";
 const SERVICES = [
   {
     alt: "Emily coaching a young rider on a palomino in an indoor arena",
-    body: "Individual instruction built around your goals. We master the basics and advance through the dressage training scale, at a pace that feels right for you.",
+    body: ["We provide individualized instruction based on rider needs with a focus on mastering the basics and advancing the practice using the dressage training scale."],
     image: "/images/site/teaching.jpg",
-    title: "Lessons",
+    title: "Teaching",
   },
   {
     alt: "A rider schooling a black horse in an indoor arena",
-    body: "Intentional, holistic training for your horse with a dressage focus and an understanding of biomechanics that supports soundness and longevity.",
+    body: [
+      "We offer intentional, holistic training for horses with a dressage focus and knowledge of biomechanics that promotes longevity and soundness.",
+      "We recommend a combination of lessons and training sessions to ensure proper development of horse and rider skills.",
+      "We understand that riding is a partnership; you can only teach your horse as much as you know.",
+    ],
     image: "/images/site/training.jpg",
     title: "Training",
   },
   {
     alt: "Emily leading a young rider on a horse through the woods",
-    body: "Group stretching and mindfulness, workshops, and community connection circles, all in an equestrian setting.",
+    body: ["We offer group stretching and mindfulness practices, workshops, and community connection circles in an equestrian setting."],
     image: "/images/site/trail-walk.jpg",
     title: "Wellness experiences",
   },
 ];
 
-const ALSO_OFFERED = [
-  "Private and group lessons (up to 3 riders)",
-  "Youth lessons",
-  "Lesson and training packages",
-  "Mindful grooming sessions",
+const PACKAGES = [
+  "Group lessons (up to 3 riders)",
+  "Youth lessons (<15 years of age)",
   "Show coaching",
-  "Clinics at your facility",
+  "Clinics: Invite me to spend the day at your facility!",
+  "Travel services (for existing clients only)",
 ];
 
 export function Services() {
   return (
-    <section id="services" className="scroll-mt-20 bg-base-200 px-4 py-20 md:px-8 md:py-28">
+    <section id="what-we-offer" className="scroll-mt-24 bg-base-200 px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">Services</p>
-        <h2 className="mt-4 max-w-2xl text-4xl leading-tight md:text-5xl">Support for every part of the journey.</h2>
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-secondary">What we offer</p>
+        <h2 className="mt-4 max-w-3xl text-3xl leading-tight md:text-5xl">
+          ChoiceEQ supports every aspect of a rider and horses&apos; journey and meets them where they&apos;re at to support wellness and promote growth.
+        </h2>
 
         <div className="mt-14 space-y-16 md:space-y-24">
           {SERVICES.map((service, i) => (
@@ -45,9 +50,10 @@ export function Services() {
                 <Image src={service.image} alt={service.alt} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
               <div>
-                <span className="text-sm text-secondary" style={{ fontFamily: "var(--font-heading)" }}>{`0${i + 1}`}</span>
-                <h3 className="mt-2 text-3xl font-medium">{service.title}</h3>
-                <p className="mt-4 text-lg text-base-content/80">{service.body}</p>
+                <h3 className="text-3xl font-medium">{service.title}</h3>
+                {service.body.map((line) => (
+                  <p key={line} className="mt-4 text-lg text-base-content/80">{line}</p>
+                ))}
               </div>
             </article>
           ))}
@@ -56,11 +62,13 @@ export function Services() {
         <div className="mt-20 rounded-2xl bg-base-100 p-8 md:p-12">
           <div className="grid gap-8 md:grid-cols-[1fr_2fr]">
             <div>
-              <h3 className="text-2xl font-medium">Also offered</h3>
-              <p className="mt-3 text-base-content/70">Packages can mix lessons and training sessions to fit what you and your horse need each month.</p>
+              <h3 className="text-2xl font-medium">Packages</h3>
+              <p className="mt-3 text-base-content/70">
+                Packages can be tailored to client-specific needs and can mix/match lessons or training sessions depending on what is needed that month.
+              </p>
             </div>
             <ul className="grid gap-x-8 gap-y-3 sm:grid-cols-2">
-              {ALSO_OFFERED.map((item) => (
+              {PACKAGES.map((item) => (
                 <li key={item} className="flex gap-3">
                   <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-secondary" aria-hidden="true" />
                   {item}
@@ -68,8 +76,8 @@ export function Services() {
               ))}
             </ul>
           </div>
-          <Link href="#contact" className="mt-10 inline-block rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-content transition-colors hover:bg-neutral">
-            Ask about rates and scheduling
+          <Link href="#reach-out" className="mt-10 inline-block rounded-full bg-primary px-7 py-3.5 font-semibold text-primary-content transition-colors hover:bg-neutral">
+            Reach out
           </Link>
         </div>
       </div>

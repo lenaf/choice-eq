@@ -17,10 +17,10 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  description: "Dressage training, riding lessons, and mindfulness for horse and rider in Western New York.",
+  description: "Provide flexible and holistic equine services and experiences with a focus on dressage and developing an intentional mindset.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"),
   openGraph: { images: ["/images/site/hero-ride.jpg"] },
-  title: "Choice Equestrian | From the Saddle to the Soul",
+  title: "ChoiceEQ | From the Saddle to the Soul: Equine Training and Wellness Practices",
 };
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
