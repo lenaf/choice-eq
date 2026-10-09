@@ -1,42 +1,42 @@
 export const themeConfig = {
   colors: {
-    primary: "#58755D",
+    primary: "#4F6E61",
     primaryContent: "#FFFFFF",
 
-    secondary: "#EF9FBC",
-    secondaryContent: "#2A1018",
+    secondary: "#7E5A82",
+    secondaryContent: "#FFFFFF",
 
-    accent: "#BDB7DA",
-    accentContent: "#2A1018",
+    accent: "#CCDCD2",
+    accentContent: "#1F2723",
 
-    accent2: "#F6D860",
-    accent2Content: "#2A1018",
+    accent2: "#628476",
+    accent2Content: "#FFFFFF",
 
-    neutral: "#2A1018",
-    neutralContent: "#EAE5E1",
+    neutral: "#1F2723",
+    neutralContent: "#F4F1EC",
 
-    base100: "#FFFFFF",
-    base200: "#EAE5E1",
-    base300: "#6B6B6B",
-    baseContent: "#2A1018",
+    base100: "#FCFBF9",
+    base200: "#F4F1EC",
+    base300: "#6B736F",
+    baseContent: "#1F2723",
 
     info: "#60A5FA",
     infoContent: "#172554",
 
-    success: "#58755D",
+    success: "#4F6E61",
     successContent: "#FFFFFF",
 
-    warning: "#F6D860",
-    warningContent: "#2A1018",
+    warning: "#E8C468",
+    warningContent: "#1F2723",
 
-    error: "#C5341B",
+    error: "#B4432F",
     errorContent: "#FFFFFF",
   },
 
   logo: {
-    src: "/images/logos/logo.png",
+    src: "/images/logos/choice-logo.png",
     alt: "Choice Equine",
-    width: 82,
-    height: 58,
+    width: 409,
+    height: 275,
   },
 };

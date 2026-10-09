@@ -1,35 +1,36 @@
 import "@/app/globals.css";
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-import { ScrollToTop } from "@/components/ScrollToTop";
+import type { Metadata } from "next";
+import { DM_Sans, Fraunces } from "next/font/google";
 import { CartProvider } from "@/components/cart/CartProvider";
-import { Poppins, Questrial } from "next/font/google";
+import { ScrollToTop } from "@/components/ScrollToTop";
+import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 
-const poppins = Poppins({
-  weight: ["400", "600", "700"],
+const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-heading",
 });
 
-const questrial = Questrial({
-  weight: "400",
+const dmSans = DM_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
 });
 
+export const metadata: Metadata = {
+  description: "Dressage training, riding lessons, and mindfulness for horse and rider in Western New York.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000"),
+  openGraph: { images: ["/images/site/hero-ride.jpg"] },
+  title: "Choice Equestrian | From the Saddle to the Soul",
+};
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${poppins.variable} ${questrial.variable}`}
-        style={{
-          fontFamily: 'var(--font-sans), Questrial, sans-serif',
-        }}
-      >
+      <body className={`${fraunces.variable} ${dmSans.variable}`}>
         <CartProvider>
-          <Header />
+          <SiteHeader />
           {children}
-          <Footer />
+          <SiteFooter />
           <ScrollToTop />
         </CartProvider>
       </body>

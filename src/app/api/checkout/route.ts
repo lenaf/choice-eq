@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getPayload } from "@/lib/payload";
 import { getStripe } from "@/lib/stripe";
 import { getProductImages, isSoldOut } from "@/lib/products";
+import { siteConfig } from "@/config/site";
 
 export const dynamic = "force-dynamic";
 
@@ -11,6 +12,7 @@ interface CheckoutRequestItem {
 }
 
 export async function POST(request: Request) {
+  if (!siteConfig.shopEnabled) return NextResponse.json({ error: "Not found" }, { status: 404 });
   try {
     const body = await request.json();
     const requested: CheckoutRequestItem[] = Array.isArray(body?.items) ? body.items : [];

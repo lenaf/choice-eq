@@ -11,22 +11,22 @@
 @layer base {
   body {
     background-color: var(--color-base-100);
-    font-family: var(--font-sans), Questrial, system-ui, sans-serif;
+    font-family: var(--font-sans), system-ui, sans-serif;
     font-weight: 400;
-    font-size: 15px;
-    line-height: 1.7;
-    color: #1A1A1A;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--color-base-content);
   }
   b, strong {
     font-weight: 700;
   }
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading), 'Poppins', system-ui, sans-serif;
+    font-family: var(--font-heading), Georgia, serif;
   }
   h1 {
-    font-size: 86px;
-    line-height: 86px;
-    font-weight: 700;
+    font-size: clamp(2.75rem, 7vw, 5.5rem);
+    line-height: 1.02;
+    font-weight: 500;
   }
   h2 {
     font-size: 42px;
