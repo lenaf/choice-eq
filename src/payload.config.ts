@@ -6,6 +6,7 @@ import {
   TextStateFeature,
 } from "@payloadcms/richtext-lexical";
 import { s3Storage } from "@payloadcms/storage-s3";
+import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
 import path from "path";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
@@ -36,6 +37,11 @@ export default buildConfig({
     },
   },
   plugins: [
+    vercelBlobStorage({
+      collections: { media: true },
+      enabled: !!process.env.BLOB_READ_WRITE_TOKEN,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+    }),
     s3Storage({
       enabled: !!process.env.S3_BUCKET,
       collections: {
@@ -191,7 +197,7 @@ export default buildConfig({
     outputFile: path.resolve(dirname, "payload-types.ts"),
   },
   db: postgresAdapter({
-    pool: { connectionString: process.env.DATABASE_URI || "" },
+    pool: { connectionString: process.env.DATABASE_URI || process.env.DATABASE_URL || "" },
   }),
   sharp,
 });

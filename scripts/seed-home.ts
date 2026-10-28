@@ -1,4 +1,5 @@
 // Loads Emily's home page content and photos into the CMS. Replaces only the home page and the menu/settings globals.
+// With --if-empty, does nothing when a home page already exists.
 import "dotenv/config";
 import path from "path";
 import { getPayload, type Payload } from "payload";
@@ -38,6 +39,13 @@ const t = (text: string) => ({ text });
 
 const seedHome = async () => {
   const payload = await getPayload({ config });
+  if (process.argv.includes("--if-empty")) {
+    const { totalDocs } = await payload.count({ collection: "pages", where: { slug: { equals: "home" } } });
+    if (totalDocs > 0) {
+      console.log("Home page exists; skipping.");
+      process.exit(0);
+    }
+  }
   const m = await getMediaIds(payload);
 
   const sections = [

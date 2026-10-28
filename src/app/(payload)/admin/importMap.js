@@ -31,6 +31,7 @@ import { NavItemRowLabel as NavItemRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } f
 import { CtaButtonRowLabel as CtaButtonRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } from '@/payload/components/RowLabel'
 import { LogoutButton as LogoutButton_4fa0da4f39e65c0a260a976af575b7d4 } from '@/payload/components/LogoutButton'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
+import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { S3ClientUploadHandler as S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24 } from '@payloadcms/storage-s3/client'
 
 /** @type import('payload').ImportMap */
@@ -68,5 +69,6 @@ export const importMap = {
   "@/payload/components/RowLabel#CtaButtonRowLabel": CtaButtonRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1,
   "@/payload/components/LogoutButton#LogoutButton": LogoutButton_4fa0da4f39e65c0a260a976af575b7d4,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
+  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "@payloadcms/storage-s3/client#S3ClientUploadHandler": S3ClientUploadHandler_f97aa6c64367fa259c5bc0567239ef24
 }

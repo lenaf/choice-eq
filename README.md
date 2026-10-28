@@ -18,6 +18,12 @@ pnpm dev
 - `pnpm seed:home` loads the home page content, photos, menu, and contact details. It replaces only the home page.
 - Postgres runs in Docker on port 5433. Uploads go to `./media` unless `S3_BUCKET` is set.
 
+## Deploying (Vercel)
+
+- Storage: Neon Postgres (`DATABASE_URL`) and Vercel Blob (`BLOB_READ_WRITE_TOKEN`) are connected in the Vercel project.
+- `pnpm vercel-build` runs the database migrations, loads the home page if none exists, then builds.
+- After changing collections or blocks, run `pnpm payload migrate:create <name>` and commit the new file in `src/migrations`.
+
 ## Stripe
 
 - `STRIPE_SECRET_KEY`: use a test key locally.

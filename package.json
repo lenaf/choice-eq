@@ -4,15 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "npm run generate-colors && concurrently \"next dev\" \"payload generate:types --watch\" \"payload generate:importmap --watch\"",
     "build": "npm run generate-colors && next build",
-    "start": "next start",
-    "lint": "eslint",
+    "dev": "npm run generate-colors && concurrently \"next dev\" \"payload generate:types --watch\" \"payload generate:importmap --watch\"",
     "generate-colors": "node scripts/generate-colors.mjs",
+    "lint": "eslint",
     "payload:generate": "payload generate:types",
     "payload:importmap": "payload generate:importmap",
     "seed": "tsx --env-file=.env.local scripts/seed.ts",
-    "seed:home": "tsx --env-file=.env.local scripts/seed-home.ts"
+    "seed:home": "tsx --env-file=.env.local scripts/seed-home.ts",
+    "start": "next start",
+    "vercel-build": "npm run generate-colors && payload migrate && NODE_ENV=production tsx scripts/seed-home.ts --if-empty && next build"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1000.0",
@@ -22,6 +23,7 @@
     "@payloadcms/next": "^3.78.0",
     "@payloadcms/richtext-lexical": "^3.78.0",
     "@payloadcms/storage-s3": "^3.78.0",
+    "@payloadcms/storage-vercel-blob": "3.90.2",
     "@payloadcms/ui": "^3.78.0",
     "@radix-ui/react-label": "^2.1.7",
     "@radix-ui/react-slot": "^1.2.3",
