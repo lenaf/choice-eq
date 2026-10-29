@@ -17,17 +17,13 @@ import { Products } from "./payload/collections/Products";
 import { SiteSettings } from "./payload/globals/SiteSettings";
 
 import { themeConfig } from "@/config/theme";
+import { serverURL } from "@/lib/serverUrl";
 
 import { Navigation } from "./payload/globals/Navigation";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-const serverURL =
-  process.env.NEXT_PUBLIC_SERVER_URL ||
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
 
 const allowedOrigins = [
   "http://localhost:3002",

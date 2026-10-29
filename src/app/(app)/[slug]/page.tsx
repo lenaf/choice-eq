@@ -2,6 +2,9 @@ import { getPayload } from '@/lib/payload'
 import { RenderBlocks } from '@/components/blocks/RenderBlocks'
 import { getSiteSettings } from '@/lib/siteData'
 import { notFound } from 'next/navigation'
+import { draftMode } from 'next/headers'
+import { LivePreviewListener } from '@/components/LivePreviewListener'
+import { serverURL } from '@/lib/serverUrl'
 import type { Metadata } from 'next'
 import type { Page, Media } from '@/payload-types'
 
@@ -26,12 +29,13 @@ export async function generateStaticParams() {
   }
 }
 
-async function getPage(slug: string): Promise<Page | null> {
+async function getPage(slug: string, draft = false): Promise<Page | null> {
   const payload = await getPayload()
   const pages = await payload.find({
     collection: 'pages',
     where: { slug: { equals: slug } },
     depth: 3,
+    draft,
   })
   return (pages.docs[0] as Page) || null
 }
@@ -64,7 +68,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function PageComponent({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const page = await getPage(slug)
+  const { isEnabled: draft } = await draftMode()
+  const page = await getPage(slug, draft)
 
   if (!page) {
     notFound()
@@ -75,6 +80,7 @@ export default async function PageComponent({ params }: { params: Promise<{ slug
 
   return (
     <main className="min-h-screen pt-24">
+      {draft && <LivePreviewListener serverURL={serverURL} />}
       <RenderBlocks sections={sections} settings={settings} />
     </main>
   )

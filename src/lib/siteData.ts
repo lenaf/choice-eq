@@ -33,10 +33,10 @@ export const getNavLinks = cache(async (): Promise<{ cta: NavLink | null; links:
   }
 });
 
-export const getPageBySlug = cache(async (slug: string): Promise<Page | null> => {
+export const getPageBySlug = cache(async (slug: string, draft = false): Promise<Page | null> => {
   try {
     const payload = await getPayload();
-    const { docs } = await payload.find({ collection: "pages", depth: 2, limit: 1, where: { slug: { equals: slug } } });
+    const { docs } = await payload.find({ collection: "pages", depth: 2, draft, limit: 1, where: { slug: { equals: slug } } });
     return docs[0] || null;
   } catch {
     return null;

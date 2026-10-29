@@ -1,3 +1,4 @@
+import { serverURL } from "@/lib/serverUrl";
 import "@/app/globals.css";
 import type { Metadata } from "next";
 import { DM_Sans, Fraunces } from "next/font/google";
@@ -19,12 +20,7 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   description: "Provide flexible and holistic equine services and experiences with a focus on dressage and developing an intentional mindset.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SERVER_URL ||
-      (process.env.VERCEL_PROJECT_PRODUCTION_URL
-        ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-        : "http://localhost:3000"),
-  ),
+  metadataBase: new URL(serverURL),
   openGraph: { images: ["/images/site/hero-ride.jpg"] },
   title: "ChoiceEQ | From the Saddle to the Soul: Equine Training and Wellness Practices",
 };

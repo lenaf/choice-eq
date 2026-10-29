@@ -1,3 +1,4 @@
+import { getPathFromSlug, serverURL } from "@/lib/serverUrl";
 import type { CollectionConfig, Field } from "payload";
 import { revalidate } from "../utils/revalidate";
 import { homeBlocks } from "../blocks/homeBlocks";
@@ -190,10 +191,18 @@ export const Pages: CollectionConfig = {
     description: "All pages on the site. Build pages by adding sections below.",
     group: "🌐 Website",
     listSearchableFields: ["title", "slug"],
-    preview: (doc) => `${process.env.NEXT_PUBLIC_SERVER_URL}/${doc.slug === "home" ? "" : doc.slug}`,
+    livePreview: {
+      breakpoints: [
+        { height: 812, label: "Phone", name: "phone", width: 375 },
+        { height: 1024, label: "Tablet", name: "tablet", width: 768 },
+        { height: 900, label: "Desktop", name: "desktop", width: 1440 },
+      ],
+      url: ({ data }) => `${serverURL}/next/preview?slug=${data?.slug || "home"}`,
+    },
+    preview: (doc) => `${serverURL}${getPathFromSlug(doc.slug as string)}`,
   },
   versions: {
-    drafts: true,
+    drafts: { autosave: { interval: 400 } },
   },
   hooks: {
     beforeDelete: [

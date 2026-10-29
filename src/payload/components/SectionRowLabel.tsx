@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Pill, useRowLabel } from "@payloadcms/ui";
+import { useRowLabel } from "@payloadcms/ui";
 
 const BLOCK_LABELS: Record<string, string> = {
   contactBand: "Contact Band",
@@ -58,34 +58,54 @@ export function SectionRowLabel() {
   }, [imageId]);
 
   const preview = getPreviewTextFromSection(data || {});
+  const blockLabel = BLOCK_LABELS[data?.blockType || ""] || data?.blockType;
 
   return (
-    <span style={{ alignItems: "center", display: "flex", gap: "0.75rem", minWidth: 0 }}>
-      <span className="blocks-field__block-number">{String((rowNumber ?? 0) + 1).padStart(2, "0")}</span>
+    <span style={{ alignItems: "center", display: "flex", gap: "0.875rem", minWidth: 0, padding: "2px 0" }}>
       <span
         style={{
+          alignItems: "center",
           background: thumbnail ? `center / cover no-repeat url("${thumbnail}")` : "var(--theme-elevation-100)",
-          borderRadius: 4,
+          borderRadius: 6,
+          boxShadow: "inset 0 0 0 1px rgba(0, 0, 0, 0.06)",
+          color: "#4F6E61",
+          display: "flex",
           flexShrink: 0,
-          height: 36,
-          width: 48,
+          fontFamily: "Georgia, serif",
+          fontSize: 28,
+          height: 44,
+          justifyContent: "center",
+          lineHeight: 1,
+          width: 64,
         }}
-      />
-      <Pill className="blocks-field__block-pill" pillStyle="white" size="small">
-        {BLOCK_LABELS[data?.blockType || ""] || data?.blockType}
-      </Pill>
-      {preview && (
+      >
+        {!imageId && "\u201C"}
+      </span>
+      <span style={{ display: "flex", flexDirection: "column", gap: 2, minWidth: 0 }}>
         <span
           style={{
             color: "var(--theme-elevation-500)",
+            fontSize: 11,
+            fontWeight: 600,
+            letterSpacing: "0.06em",
+            textTransform: "uppercase",
+          }}
+        >
+          {String((rowNumber ?? 0) + 1).padStart(2, "0")} · {blockLabel}
+        </span>
+        <span
+          style={{
+            color: "var(--theme-elevation-800)",
+            fontSize: 15,
+            fontWeight: 500,
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
           }}
         >
-          {preview}
+          {preview || "No heading yet"}
         </span>
-      )}
+      </span>
     </span>
   );
 }

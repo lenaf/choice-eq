@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
+import { LivePreviewListener } from "@/components/LivePreviewListener";
 import { RenderBlocks } from "@/components/blocks/RenderBlocks";
+import { serverURL } from "@/lib/serverUrl";
 import { getPageBySlug, getSiteSettings } from "@/lib/siteData";
 
 export const revalidate = 60;
@@ -14,12 +17,14 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Home() {
-  const [page, settings] = await Promise.all([getPageBySlug("home"), getSiteSettings()]);
+  const { isEnabled: draft } = await draftMode();
+  const [page, settings] = await Promise.all([getPageBySlug("home", draft), getSiteSettings()]);
 
   if (!page) return <main className="min-h-screen pt-24" />;
 
   return (
     <main className="pt-24">
+      {draft && <LivePreviewListener serverURL={serverURL} />}
       <RenderBlocks sections={page.sections || []} settings={settings} />
     </main>
   );
