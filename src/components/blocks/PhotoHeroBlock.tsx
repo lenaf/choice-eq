@@ -6,7 +6,7 @@ import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./type
 export function PhotoHeroBlock({ block }: { block: BlockOf<"photoHero"> }) {
   const src = getMediaSrc(block.image);
   const overlay = getOverlayFromMedia(block.image, { color: "dark", strength: "medium" });
-  const tint = (a: number) => (overlay ? `rgba(${overlay.rgb}, ${(overlay.alpha * a).toFixed(2)})` : "transparent");
+  const tint = (amount: number) => overlay?.tint(amount) ?? "transparent";
 
   return (
     <section className="relative flex min-h-[calc(92svh-6rem)] items-end overflow-hidden bg-neutral text-white">

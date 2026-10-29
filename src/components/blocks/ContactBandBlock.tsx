@@ -13,7 +13,7 @@ export function ContactBandBlock({ block, settings }: { block: BlockOf<"contactB
   return (
     <section id={block.anchor || undefined} className="relative scroll-mt-24 overflow-hidden bg-primary text-primary-content">
       {bg && <Image src={bg} alt="" fill sizes="100vw" className="object-cover" style={getMediaPosition(block.backgroundImage)} />}
-      {bg && overlay && <div className="absolute inset-0" style={{ background: `rgba(${overlay.rgb}, ${overlay.alpha})` }} />}
+      {bg && overlay && <div className="absolute inset-0" style={{ background: overlay.tint() }} />}
       <div className="relative mx-auto max-w-3xl px-4 py-24 text-center md:px-8 md:py-32">
         <h2 className="text-4xl leading-tight text-white md:text-6xl">{block.heading}</h2>
         {block.text && <p className="mx-auto mt-6 max-w-xl text-lg text-white/90">{block.text}</p>}

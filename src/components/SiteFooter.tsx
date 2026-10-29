@@ -1,7 +1,9 @@
 import Image from "next/image";
 import type { SiteSetting } from "@/payload-types";
 
-export function SiteFooter({ settings }: { settings: SiteSetting | null }) {
+type Logo = { height: number; src: string; width: number };
+
+export function SiteFooter({ logo, settings }: { logo: Logo; settings: SiteSetting | null }) {
   const email = settings?.contact?.email;
   const phone = settings?.contact?.phone;
   const { facebook, instagram } = settings?.socialMedia || {};
@@ -11,7 +13,7 @@ export function SiteFooter({ settings }: { settings: SiteSetting | null }) {
     <footer className="bg-accent text-accent-content">
       <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 py-12 md:flex-row md:items-center md:justify-between md:px-8">
         <div className="flex items-center gap-4">
-          <Image src="/images/logos/choice-logo.svg" alt="choice. Emily Markham Equestrian" width={2440} height={1639} className="h-24 w-auto" />
+          <Image src={logo.src} alt={settings?.siteName || "choice. Emily Markham Equestrian"} width={logo.width} height={logo.height} unoptimized={logo.src.includes(".svg")} className="h-24 w-auto" />
           {settings?.tagline && <p className="max-w-xs text-sm opacity-80">{settings.tagline}</p>}
         </div>
         <div className="flex flex-col gap-1 text-sm md:items-end">

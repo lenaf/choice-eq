@@ -654,7 +654,6 @@ export interface Media {
    */
   overlayColor?: ('auto' | 'dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
   overlayStrength?: ('auto' | 'light' | 'medium' | 'strong') | null;
-  _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -1221,7 +1220,6 @@ export interface MediaSelect<T extends boolean = true> {
   alt?: T;
   overlayColor?: T;
   overlayStrength?: T;
-  _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1378,6 +1376,24 @@ export interface SiteSetting {
   siteName?: string | null;
   tagline?: string | null;
   logo?: (number | null) | Media;
+  footerLogo?: (number | null) | Media;
+  theme?: {
+    headingFont?:
+      ('cormorant' | 'dmSerif' | 'fraunces' | 'libreBaskerville' | 'lora' | 'montserrat' | 'playfair') | null;
+    bodyFont?: ('dmSans' | 'inter' | 'karla' | 'lato' | 'nunitoSans' | 'sourceSans' | 'workSans') | null;
+    /**
+     * Text on each color switches between white and dark automatically
+     */
+    colors?: {
+      primary?: string | null;
+      secondary?: string | null;
+      accent?: string | null;
+      neutral?: string | null;
+      background?: string | null;
+      backgroundAlt?: string | null;
+      text?: string | null;
+    };
+  };
   contact?: {
     email?: string | null;
     phone?: string | null;
@@ -1443,6 +1459,24 @@ export interface SiteSettingsSelect<T extends boolean = true> {
   siteName?: T;
   tagline?: T;
   logo?: T;
+  footerLogo?: T;
+  theme?:
+    | T
+    | {
+        headingFont?: T;
+        bodyFont?: T;
+        colors?:
+          | T
+          | {
+              primary?: T;
+              secondary?: T;
+              accent?: T;
+              neutral?: T;
+              background?: T;
+              backgroundAlt?: T;
+              text?: T;
+            };
+      };
   contact?:
     | T
     | {

@@ -4,6 +4,7 @@ import * as migration_20261029_134623_live_preview_autosave from './20261029_134
 import * as migration_20261029_140951_photo_overlay from './20261029_140951_photo_overlay';
 import * as migration_20261029_143859_overlay_brand_colors from './20261029_143859_overlay_brand_colors';
 import * as migration_20261029_144651_overlay_on_media from './20261029_144651_overlay_on_media';
+import * as migration_20261029_150401_site_theme_and_logos from './20261029_150401_site_theme_and_logos';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20261029_144651_overlay_on_media.up,
     down: migration_20261029_144651_overlay_on_media.down,
-    name: '20261029_144651_overlay_on_media'
+    name: '20261029_144651_overlay_on_media',
+  },
+  {
+    up: migration_20261029_150401_site_theme_and_logos.up,
+    down: migration_20261029_150401_site_theme_and_logos.down,
+    name: '20261029_150401_site_theme_and_logos'
   },
 ];

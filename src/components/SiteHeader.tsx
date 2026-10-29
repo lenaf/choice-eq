@@ -7,7 +7,9 @@ import { siteConfig } from "@/config/site";
 import type { NavLink } from "@/lib/siteData";
 import { CartButton } from "./cart/CartButton";
 
-export function SiteHeader({ cta, links }: { cta: NavLink | null; links: NavLink[] }) {
+type Logo = { height: number; src: string; width: number };
+
+export function SiteHeader({ cta, links, logo }: { cta: NavLink | null; links: NavLink[]; logo: Logo }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -30,7 +32,7 @@ export function SiteHeader({ cta, links }: { cta: NavLink | null; links: NavLink
           aria-label="ChoiceEQ home"
           className="shrink-0"
         >
-          <Image src="/images/logos/choice-mark.svg" alt="choice. Emily Markham Equestrian" width={1850} height={1307} priority className="h-[76px] w-auto" />
+          <Image src={logo.src} alt="choice. Emily Markham Equestrian" width={logo.width} height={logo.height} priority unoptimized={logo.src.includes(".svg")} className="h-[76px] w-auto" />
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-8 md:flex">

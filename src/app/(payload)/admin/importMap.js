@@ -31,6 +31,7 @@ import { FloatingArrayField as FloatingArrayField_06528f4bdcd70fdc4d6eff64bd2b45
 import { BlockLabel as BlockLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } from '@/payload/components/RowLabel'
 import { NavItemRowLabel as NavItemRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } from '@/payload/components/RowLabel'
 import { CtaButtonRowLabel as CtaButtonRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1 } from '@/payload/components/RowLabel'
+import { ColorPickerField as ColorPickerField_231cea9390dde05be64e71973c26440a } from '@/payload/components/ColorPickerField'
 import { LogoutButton as LogoutButton_4fa0da4f39e65c0a260a976af575b7d4 } from '@/payload/components/LogoutButton'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
@@ -71,6 +72,7 @@ export const importMap = {
   "@/payload/components/RowLabel#BlockLabel": BlockLabel_330bd7521fe9b72cd9d2defbdaf80bf1,
   "@/payload/components/RowLabel#NavItemRowLabel": NavItemRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1,
   "@/payload/components/RowLabel#CtaButtonRowLabel": CtaButtonRowLabel_330bd7521fe9b72cd9d2defbdaf80bf1,
+  "@/payload/components/ColorPickerField#ColorPickerField": ColorPickerField_231cea9390dde05be64e71973c26440a,
   "@/payload/components/LogoutButton#LogoutButton": LogoutButton_4fa0da4f39e65c0a260a976af575b7d4,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1,
   "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
