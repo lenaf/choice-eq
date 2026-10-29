@@ -42,3 +42,32 @@ export function FormFieldRowLabel() {
   if (data?.label) return <span>{data.label}{data.mapsTo ? ` → ${data.mapsTo}` : ""}</span>;
   return <span>{`Field ${String(rowNumber).padStart(2, "0")}`}</span>;
 }
+
+export function HeroButtonRowLabel() {
+  const { data, rowNumber } = useRowLabel<{ href?: string; label?: string; style?: string }>();
+  const isOutline = data?.style === "outline";
+  return (
+    <span style={{ alignItems: "center", display: "flex", gap: "0.75rem", minWidth: 0 }}>
+      <span
+        style={{
+          background: isOutline ? "transparent" : "#4F6E61",
+          border: "1.5px solid #4F6E61",
+          borderRadius: 999,
+          color: isOutline ? "#4F6E61" : "#FFFFFF",
+          flexShrink: 0,
+          fontSize: 13,
+          fontWeight: 600,
+          padding: "4px 14px",
+          whiteSpace: "nowrap",
+        }}
+      >
+        {data?.label || `Button ${String((rowNumber ?? 0) + 1).padStart(2, "0")}`}
+      </span>
+      {data?.href && (
+        <span style={{ color: "var(--theme-elevation-500)", fontSize: 13, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+          → {data.href}
+        </span>
+      )}
+    </span>
+  );
+}

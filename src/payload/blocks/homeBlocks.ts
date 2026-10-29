@@ -41,23 +41,24 @@ export const PhotoHero: Block = {
       name: "buttons",
       type: "array",
       maxRows: 2,
+      admin: { components: { RowLabel: "@/payload/components/RowLabel#HeroButtonRowLabel" } },
       fields: [
         {
           type: "row",
           fields: [
-            { name: "label", type: "text", required: true, admin: { width: "40%" } },
-            { name: "href", type: "text", required: true, label: "Link", admin: { width: "40%", placeholder: "#reach-out" } },
-            {
-              name: "style",
-              type: "select",
-              defaultValue: "solid",
-              options: [
-                { label: "Solid", value: "solid" },
-                { label: "Outline", value: "outline" },
-              ],
-              admin: { width: "20%" },
-            },
+            { name: "label", type: "text", required: true, label: "Button text", admin: { width: "50%" } },
+            { name: "href", type: "text", required: true, label: "Links to", admin: { placeholder: "#reach-out or https://...", width: "50%" } },
           ],
+        },
+        {
+          name: "style",
+          type: "radio",
+          defaultValue: "solid",
+          options: [
+            { label: "Solid", value: "solid" },
+            { label: "Outline", value: "outline" },
+          ],
+          admin: { layout: "horizontal" },
         },
       ],
     },
