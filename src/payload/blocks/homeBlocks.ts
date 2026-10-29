@@ -7,6 +7,11 @@ const anchorField: Field = {
   admin: { description: "Lets menu links jump here, e.g. who-we-are links from /#who-we-are" },
 };
 
+const sectionAdmin: Block["admin"] = {
+  components: { Label: "@/payload/components/SectionRowLabel#SectionRowLabel" },
+  disableBlockName: true,
+};
+
 const textList = (name: string, label: string): Field => ({
   name,
   type: "array",
@@ -26,6 +31,7 @@ export const PhotoHero: Block = {
   slug: "photoHero",
   dbName: "phero",
   labels: { singular: "Photo Hero", plural: "Photo Heroes" },
+  admin: sectionAdmin,
   fields: [
     image(),
     { name: "eyebrow", type: "text", label: "Small text above heading" },
@@ -62,6 +68,7 @@ export const PhotoCards: Block = {
   slug: "photoCards",
   dbName: "pcards",
   labels: { singular: "Photo Cards", plural: "Photo Cards" },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     { name: "eyebrow", type: "text", label: "Small text above heading" },
@@ -79,6 +86,7 @@ export const PhotoRows: Block = {
   slug: "photoRows",
   dbName: "prows",
   labels: { singular: "Photo + Text Rows", plural: "Photo + Text Rows" },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     { name: "eyebrow", type: "text", label: "Small text above heading" },
@@ -113,6 +121,7 @@ export const PhotoBand: Block = {
   slug: "photoBand",
   dbName: "pband",
   labels: { singular: "Dark Photo Band", plural: "Dark Photo Bands" },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     image(),
@@ -128,6 +137,7 @@ export const QuoteBlock: Block = {
   slug: "quote",
   dbName: "quote",
   labels: { singular: "Quote", plural: "Quotes" },
+  admin: sectionAdmin,
   fields: [textList("paragraphs", "Quote paragraphs"), { name: "attribution", type: "text" }],
 };
 
@@ -135,6 +145,7 @@ export const Profile: Block = {
   slug: "profile",
   dbName: "profile",
   labels: { singular: "Profile", plural: "Profiles" },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     image(),
@@ -149,6 +160,7 @@ export const PhotoGrid: Block = {
   slug: "photoGrid",
   dbName: "pgrid",
   labels: { singular: "Photo Grid", plural: "Photo Grids" },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     { name: "heading", type: "text" },
@@ -178,7 +190,7 @@ export const ContactBand: Block = {
   slug: "contactBand",
   dbName: "contact",
   labels: { singular: "Contact Band", plural: "Contact Bands" },
-  admin: { disableBlockName: true },
+  admin: sectionAdmin,
   fields: [
     anchorField,
     image("backgroundImage", false),
