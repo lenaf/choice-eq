@@ -156,6 +156,11 @@ export interface Page {
     | (
         | {
             image: number | Media;
+            /**
+             * Tints the photo so the text stays readable
+             */
+            overlayColor?: ('dark' | 'green' | 'none') | null;
+            overlayStrength?: ('light' | 'medium' | 'strong') | null;
             eyebrow?: string | null;
             heading: string;
             subheading?: string | null;
@@ -316,6 +321,11 @@ export interface Page {
              */
             anchor?: string | null;
             backgroundImage?: (number | null) | Media;
+            /**
+             * Tints the photo so the text stays readable
+             */
+            overlayColor?: ('dark' | 'green' | 'none') | null;
+            overlayStrength?: ('light' | 'medium' | 'strong') | null;
             heading: string;
             text?: string | null;
             phoneLabel?: string | null;
@@ -862,6 +872,8 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               image?: T;
+              overlayColor?: T;
+              overlayStrength?: T;
               eyebrow?: T;
               heading?: T;
               subheading?: T;
@@ -1010,6 +1022,8 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               anchor?: T;
               backgroundImage?: T;
+              overlayColor?: T;
+              overlayStrength?: T;
               heading?: T;
               text?: T;
               phoneLabel?: T;

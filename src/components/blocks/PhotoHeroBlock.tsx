@@ -1,14 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getOverlayFromBlock } from "./overlay";
 import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
 
 export function PhotoHeroBlock({ block }: { block: BlockOf<"photoHero"> }) {
   const src = getMediaSrc(block.image);
+  const overlay = getOverlayFromBlock(block, { color: "dark", strength: "medium" });
+  const tint = (a: number) => (overlay ? `rgba(${overlay.rgb}, ${(overlay.alpha * a).toFixed(2)})` : "transparent");
 
   return (
     <section className="relative flex min-h-[calc(92svh-6rem)] items-end overflow-hidden bg-neutral text-white">
       {src && <Image src={src} alt={getMediaAlt(block.image)} fill priority sizes="100vw" className="object-cover object-[60%_15%]" />}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-black/20 md:bg-gradient-to-r md:from-black/75 md:via-black/40 md:to-transparent" />
+      {overlay && (
+        <div
+          className="absolute inset-0 bg-[image:var(--overlay-mobile)] md:bg-[image:var(--overlay-desktop)]"
+          style={{
+            "--overlay-desktop": `linear-gradient(to right, ${tint(1.15)}, ${tint(0.6)}, transparent)`,
+            "--overlay-mobile": `linear-gradient(to top, ${tint(1.2)}, ${tint(0.55)}, ${tint(0.3)})`,
+          } as React.CSSProperties}
+        />
+      )}
       <div className="relative mx-auto w-full max-w-6xl px-4 pb-16 pt-24 md:px-8 md:pb-24">
         {block.eyebrow && <p className="mb-5 text-sm font-medium uppercase tracking-[0.2em] text-white/85">{block.eyebrow}</p>}
         <h1 className="max-w-3xl text-white">{block.heading}</h1>
