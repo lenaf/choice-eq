@@ -23,6 +23,12 @@ import { Navigation } from "./payload/globals/Navigation";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+const serverURL =
+  process.env.NEXT_PUBLIC_SERVER_URL ||
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -80,14 +86,14 @@ export default buildConfig({
   cors: [
     "http://localhost:3002",
     "http://localhost:3000",
-    process.env.NEXT_PUBLIC_SERVER_URL || "",
+    serverURL,
   ].filter(Boolean),
   csrf: [
     "http://localhost:3002",
     "http://localhost:3000",
-    process.env.NEXT_PUBLIC_SERVER_URL || "",
+    serverURL,
   ].filter(Boolean),
-  serverURL: process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000",
+  serverURL,
   collections: [
     Pages,
     Users,

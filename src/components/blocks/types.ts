@@ -5,7 +5,7 @@ export type BlockOf<T extends PageSection["blockType"]> = Extract<PageSection, {
 
 export const getMediaSrc = (media: number | Media | null | undefined): string => {
   if (!media || typeof media !== "object" || !media.url) return "";
-  return media.url.replace(/^https?:\/\/localhost(:\d+)?/, "");
+  return media.url.replace(/^https?:\/\/[^/]+(?=\/api\/media\/)/, "");
 };
 
 export const getMediaAlt = (media: number | Media | null | undefined): string =>
