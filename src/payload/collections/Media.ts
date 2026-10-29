@@ -71,5 +71,33 @@ export const Media: CollectionConfig = {
       type: "text",
       required: true,
     },
+    {
+      name: "overlayColor",
+      type: "radio",
+      label: "Photo overlay",
+      defaultValue: "auto",
+      options: [
+        { label: "Section default", value: "auto" },
+        { label: "Dark", value: "dark" },
+        { label: "Charcoal", value: "charcoal" },
+        { label: "Green", value: "green" },
+        { label: "Plum", value: "plum" },
+        { label: "None", value: "none" },
+      ],
+      admin: { description: "Tints the photo when text sits on top of it (Photo Hero, Contact Band)", layout: "horizontal" },
+    },
+    {
+      name: "overlayStrength",
+      type: "radio",
+      label: "Overlay strength",
+      defaultValue: "auto",
+      options: [
+        { label: "Section default", value: "auto" },
+        { label: "Light", value: "light" },
+        { label: "Medium", value: "medium" },
+        { label: "Strong", value: "strong" },
+      ],
+      admin: { condition: (data) => data?.overlayColor !== "none", layout: "horizontal" },
+    },
   ],
 };

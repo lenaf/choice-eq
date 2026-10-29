@@ -1,18 +1,18 @@
 import Image from "next/image";
 import type { SiteSetting } from "@/payload-types";
-import { getOverlayFromBlock } from "./overlay";
-import { getMediaSrc, type BlockOf } from "./types";
+import { getOverlayFromMedia } from "./overlay";
+import { getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function ContactBandBlock({ block, settings }: { block: BlockOf<"contactBand">; settings: SiteSetting | null }) {
   const email = settings?.contact?.email;
   const phone = settings?.contact?.phone;
   const { facebook, instagram } = settings?.socialMedia || {};
   const bg = getMediaSrc(block.backgroundImage);
-  const overlay = getOverlayFromBlock(block, { color: "green", strength: "strong" });
+  const overlay = getOverlayFromMedia(block.backgroundImage, { color: "green", strength: "strong" });
 
   return (
     <section id={block.anchor || undefined} className="relative scroll-mt-24 overflow-hidden bg-primary text-primary-content">
-      {bg && <Image src={bg} alt="" fill sizes="100vw" className="object-cover" />}
+      {bg && <Image src={bg} alt="" fill sizes="100vw" className="object-cover" style={getMediaPosition(block.backgroundImage)} />}
       {bg && overlay && <div className="absolute inset-0" style={{ background: `rgba(${overlay.rgb}, ${overlay.alpha})` }} />}
       <div className="relative mx-auto max-w-3xl px-4 py-24 text-center md:px-8 md:py-32">
         <h2 className="text-4xl leading-tight text-white md:text-6xl">{block.heading}</h2>

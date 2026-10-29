@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function PhotoBandBlock({ block }: { block: BlockOf<"photoBand"> }) {
   return (
@@ -8,6 +8,7 @@ export function PhotoBandBlock({ block }: { block: BlockOf<"photoBand"> }) {
         <div className="relative min-h-[420px] md:min-h-full">
           <Image
             src={getMediaSrc(block.image)}
+              style={getMediaPosition(block.image)}
             alt={getMediaAlt(block.image)}
             fill
             sizes="(min-width: 768px) 50vw, 100vw"

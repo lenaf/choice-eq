@@ -3,6 +3,7 @@ import * as migration_20261028_225331_blob_storage from './20261028_225331_blob_
 import * as migration_20261029_134623_live_preview_autosave from './20261029_134623_live_preview_autosave';
 import * as migration_20261029_140951_photo_overlay from './20261029_140951_photo_overlay';
 import * as migration_20261029_143859_overlay_brand_colors from './20261029_143859_overlay_brand_colors';
+import * as migration_20261029_144651_overlay_on_media from './20261029_144651_overlay_on_media';
 
 export const migrations = [
   {
@@ -28,6 +29,11 @@ export const migrations = [
   {
     up: migration_20261029_143859_overlay_brand_colors.up,
     down: migration_20261029_143859_overlay_brand_colors.down,
-    name: '20261029_143859_overlay_brand_colors'
+    name: '20261029_143859_overlay_brand_colors',
+  },
+  {
+    up: migration_20261029_144651_overlay_on_media.up,
+    down: migration_20261029_144651_overlay_on_media.down,
+    name: '20261029_144651_overlay_on_media'
   },
 ];

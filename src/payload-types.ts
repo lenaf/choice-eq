@@ -156,11 +156,6 @@ export interface Page {
     | (
         | {
             image: number | Media;
-            /**
-             * Tints the photo so the text stays readable
-             */
-            overlayColor?: ('dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
-            overlayStrength?: ('light' | 'medium' | 'strong') | null;
             eyebrow?: string | null;
             heading: string;
             subheading?: string | null;
@@ -321,11 +316,6 @@ export interface Page {
              */
             anchor?: string | null;
             backgroundImage?: (number | null) | Media;
-            /**
-             * Tints the photo so the text stays readable
-             */
-            overlayColor?: ('dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
-            overlayStrength?: ('light' | 'medium' | 'strong') | null;
             heading: string;
             text?: string | null;
             phoneLabel?: string | null;
@@ -659,6 +649,11 @@ export interface Page {
 export interface Media {
   id: number;
   alt: string;
+  /**
+   * Tints the photo when text sits on top of it (Photo Hero, Contact Band)
+   */
+  overlayColor?: ('auto' | 'dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
+  overlayStrength?: ('auto' | 'light' | 'medium' | 'strong') | null;
   _objectKey?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -872,8 +867,6 @@ export interface PagesSelect<T extends boolean = true> {
           | T
           | {
               image?: T;
-              overlayColor?: T;
-              overlayStrength?: T;
               eyebrow?: T;
               heading?: T;
               subheading?: T;
@@ -1022,8 +1015,6 @@ export interface PagesSelect<T extends boolean = true> {
           | {
               anchor?: T;
               backgroundImage?: T;
-              overlayColor?: T;
-              overlayStrength?: T;
               heading?: T;
               text?: T;
               phoneLabel?: T;
@@ -1228,6 +1219,8 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  overlayColor?: T;
+  overlayStrength?: T;
   _objectKey?: T;
   updatedAt?: T;
   createdAt?: T;

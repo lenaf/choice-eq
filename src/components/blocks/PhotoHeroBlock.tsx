@@ -1,16 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getOverlayFromBlock } from "./overlay";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getOverlayFromMedia } from "./overlay";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function PhotoHeroBlock({ block }: { block: BlockOf<"photoHero"> }) {
   const src = getMediaSrc(block.image);
-  const overlay = getOverlayFromBlock(block, { color: "dark", strength: "medium" });
+  const overlay = getOverlayFromMedia(block.image, { color: "dark", strength: "medium" });
   const tint = (a: number) => (overlay ? `rgba(${overlay.rgb}, ${(overlay.alpha * a).toFixed(2)})` : "transparent");
 
   return (
     <section className="relative flex min-h-[calc(92svh-6rem)] items-end overflow-hidden bg-neutral text-white">
-      {src && <Image src={src} alt={getMediaAlt(block.image)} fill priority sizes="100vw" className="object-cover object-[60%_15%]" />}
+      {src && <Image src={src} alt={getMediaAlt(block.image)} fill priority sizes="100vw" className="object-cover" style={getMediaPosition(block.image)} />}
       {overlay && (
         <div
           className="absolute inset-0 bg-[image:var(--overlay-mobile)] md:bg-[image:var(--overlay-desktop)]"

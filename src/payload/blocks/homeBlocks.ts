@@ -12,35 +12,6 @@ const sectionAdmin: Block["admin"] = {
   disableBlockName: true,
 };
 
-const overlayFields = (color: "dark" | "green", strength: "light" | "medium" | "strong"): Field[] => [
-  {
-    name: "overlayColor",
-    type: "radio",
-    label: "Photo overlay",
-    defaultValue: color,
-    options: [
-      { label: "Dark", value: "dark" },
-      { label: "Charcoal", value: "charcoal" },
-      { label: "Green", value: "green" },
-      { label: "Plum", value: "plum" },
-      { label: "None", value: "none" },
-    ],
-    admin: { description: "Tints the photo so the text stays readable", layout: "horizontal" },
-  },
-  {
-    name: "overlayStrength",
-    type: "radio",
-    label: "Overlay strength",
-    defaultValue: strength,
-    options: [
-      { label: "Light", value: "light" },
-      { label: "Medium", value: "medium" },
-      { label: "Strong", value: "strong" },
-    ],
-    admin: { condition: (_, s) => s?.overlayColor !== "none", layout: "horizontal" },
-  },
-];
-
 const textList = (name: string, label: string): Field => ({
   name,
   type: "array",
@@ -63,7 +34,6 @@ export const PhotoHero: Block = {
   admin: sectionAdmin,
   fields: [
     image(),
-    ...overlayFields("dark", "medium"),
     { name: "eyebrow", type: "text", label: "Small text above heading" },
     { name: "heading", type: "text", required: true },
     { name: "subheading", type: "textarea", admin: { rows: 2 } },
@@ -225,7 +195,6 @@ export const ContactBand: Block = {
   fields: [
     anchorField,
     image("backgroundImage", false),
-    ...overlayFields("green", "strong"),
     { name: "heading", type: "text", required: true },
     { name: "text", type: "textarea", admin: { rows: 2 } },
     { name: "phoneLabel", type: "text", label: "Phone button prefix", defaultValue: "Call/text" },

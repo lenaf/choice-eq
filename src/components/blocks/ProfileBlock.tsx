@@ -1,12 +1,13 @@
 import Image from "next/image";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function ProfileBlock({ block }: { block: BlockOf<"profile"> }) {
   return (
     <section id={block.anchor || undefined} className="scroll-mt-24 bg-base-100 px-4 py-20 md:px-8 md:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 md:grid-cols-[5fr_7fr] md:gap-16">
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
-          <Image src={getMediaSrc(block.image)} alt={getMediaAlt(block.image)} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
+          <Image src={getMediaSrc(block.image)}
+              style={getMediaPosition(block.image)} alt={getMediaAlt(block.image)} fill sizes="(min-width: 768px) 40vw, 100vw" className="object-cover" />
         </div>
         <div>
           <h2 className="text-4xl leading-tight md:text-5xl">{block.name}</h2>

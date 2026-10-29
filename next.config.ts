@@ -3,6 +3,7 @@ import { withPayload } from '@payloadcms/next/withPayload'
 
 const nextConfig: NextConfig = {
   images: {
+    localPatterns: [{ pathname: '/api/media/file/**' }, { pathname: '/images/**' }],
     remotePatterns: [
       {
         protocol: 'http',

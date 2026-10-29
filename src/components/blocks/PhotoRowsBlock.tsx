@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function PhotoRowsBlock({ block }: { block: BlockOf<"photoRows"> }) {
   const box = block.box;
@@ -15,7 +15,8 @@ export function PhotoRowsBlock({ block }: { block: BlockOf<"photoRows"> }) {
           {block.rows?.map((row, i) => (
             <article key={row.id || row.title} className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
               <div className={`relative aspect-[4/3] overflow-hidden rounded-2xl ${i % 2 ? "md:order-2" : ""}`}>
-                <Image src={getMediaSrc(row.image)} alt={getMediaAlt(row.image)} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
+                <Image src={getMediaSrc(row.image)}
+              style={getMediaPosition(row.image)} alt={getMediaAlt(row.image)} fill sizes="(min-width: 768px) 50vw, 100vw" className="object-cover" />
               </div>
               <div>
                 <h3 className="text-3xl font-medium">{row.title}</h3>

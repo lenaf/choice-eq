@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 const SIZE_CLASSES: Record<string, string> = {
   large: "md:col-span-2 md:row-span-2",
@@ -21,7 +21,8 @@ export function PhotoGridBlock({ block }: { block: BlockOf<"photoGrid"> }) {
         <div className="mt-12 grid auto-rows-[220px] grid-cols-2 gap-3 md:auto-rows-[240px] md:grid-cols-4 md:gap-4">
           {block.photos?.map((photo, i) => (
             <div key={photo.id || i} className={`relative overflow-hidden rounded-xl ${SIZE_CLASSES[photo.size || "normal"]}`}>
-              <Image src={getMediaSrc(photo.image)} alt={getMediaAlt(photo.image)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-500 hover:scale-105" />
+              <Image src={getMediaSrc(photo.image)}
+              style={getMediaPosition(photo.image)} alt={getMediaAlt(photo.image)} fill sizes="(min-width: 768px) 25vw, 50vw" className="object-cover transition-transform duration-500 hover:scale-105" />
             </div>
           ))}
         </div>

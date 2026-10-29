@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getMediaAlt, getMediaSrc, type BlockOf } from "./types";
+import { getMediaAlt, getMediaPosition, getMediaSrc, type BlockOf } from "./types";
 
 export function PhotoCardsBlock({ block }: { block: BlockOf<"photoCards"> }) {
   return (
@@ -14,7 +14,8 @@ export function PhotoCardsBlock({ block }: { block: BlockOf<"photoCards"> }) {
           {block.cards?.map((card) => (
             <article key={card.id || card.title}>
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-base-200">
-                <Image src={getMediaSrc(card.image)} alt={getMediaAlt(card.image)} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
+                <Image src={getMediaSrc(card.image)}
+              style={getMediaPosition(card.image)} alt={getMediaAlt(card.image)} fill sizes="(min-width: 768px) 33vw, 100vw" className="object-cover" />
               </div>
               <h3 className="mt-6 text-2xl font-medium">{card.title}</h3>
               {card.lead && <p className="mt-3 text-base-content/90">{card.lead}</p>}
