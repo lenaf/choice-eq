@@ -20,7 +20,9 @@ const overlayFields = (color: "dark" | "green", strength: "light" | "medium" | "
     defaultValue: color,
     options: [
       { label: "Dark", value: "dark" },
+      { label: "Charcoal", value: "charcoal" },
       { label: "Green", value: "green" },
+      { label: "Plum", value: "plum" },
       { label: "None", value: "none" },
     ],
     admin: { description: "Tints the photo so the text stays readable", layout: "horizontal" },

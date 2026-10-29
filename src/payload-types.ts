@@ -159,7 +159,7 @@ export interface Page {
             /**
              * Tints the photo so the text stays readable
              */
-            overlayColor?: ('dark' | 'green' | 'none') | null;
+            overlayColor?: ('dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
             overlayStrength?: ('light' | 'medium' | 'strong') | null;
             eyebrow?: string | null;
             heading: string;
@@ -324,7 +324,7 @@ export interface Page {
             /**
              * Tints the photo so the text stays readable
              */
-            overlayColor?: ('dark' | 'green' | 'none') | null;
+            overlayColor?: ('dark' | 'charcoal' | 'green' | 'plum' | 'none') | null;
             overlayStrength?: ('light' | 'medium' | 'strong') | null;
             heading: string;
             text?: string | null;
