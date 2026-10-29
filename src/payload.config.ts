@@ -29,6 +29,14 @@ const serverURL =
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000");
 
+const allowedOrigins = [
+  "http://localhost:3002",
+  "http://localhost:3000",
+  serverURL,
+  process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "",
+  process.env.VERCEL_BRANCH_URL ? `https://${process.env.VERCEL_BRANCH_URL}` : "",
+].filter(Boolean);
+
 export default buildConfig({
   admin: {
     user: Users.slug,
@@ -83,16 +91,8 @@ export default buildConfig({
       },
     },
   ],
-  cors: [
-    "http://localhost:3002",
-    "http://localhost:3000",
-    serverURL,
-  ].filter(Boolean),
-  csrf: [
-    "http://localhost:3002",
-    "http://localhost:3000",
-    serverURL,
-  ].filter(Boolean),
+  cors: allowedOrigins,
+  csrf: allowedOrigins,
   serverURL,
   collections: [
     Pages,
